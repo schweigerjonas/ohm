@@ -3,10 +3,10 @@ package models
 import "time"
 
 type Expense struct {
-	ID          int
+	// ID          int
 	TimeOcc     time.Time
 	Description string
 	Category    string
 	Value       float32
-	TimeAdd     time.Time
+	// TimeAdd     time.Time
 }
