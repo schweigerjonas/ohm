@@ -7,6 +7,12 @@ import (
 )
 
 func Initialize(app *fiber.App, db *sql.DB) {
+	// home page handlers
 	app.Get("/", homeHandler(db))
-	app.Post("/api/expense", expenseHandler(db))
+
+	// expense handlers
+	app.Get("/api/expense", getAllExpensesHandler(db))
+	app.Post("/api/expense", addExpenseHandler(db))
+
+	// income handlers
 }

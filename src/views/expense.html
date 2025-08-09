@@ -1,0 +1,12 @@
+{{range .Expenses}}
+<tr>
+  <td>{{.TimeOcc}}</td>
+  <td>{{.Description}}</td>
+  <td>{{.Category}}</td>
+  <td>{{.Value}}</td>
+</tr>
+{{else}}
+<tr>
+  <td colspan="4">No expenses found.</td>
+</tr>
+{{end}}

@@ -14,6 +14,7 @@
     <p>{{.Message}}</p>
     <hr />
     <form
+      hx-target="#response"
       hx-post="/api/expense"
       hx-headers='{ "Content-Type": "application/json" }'
       hx-ext="form-json"
@@ -29,6 +30,25 @@
       <input type="number" name="value" placeholder="Value" required />
       <button type="submit">Send request</button>
     </form>
+    <div id="response"></div>
+
+    <hr />
+    <table>
+      <thead>
+        <tr>
+          <th>Time_Occ</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody
+        hx-get="/api/expense"
+        hx-trigger="load"
+        hx-target="this"
+        hx-swap="innerHTML"
+      ></tbody>
+    </table>
   </body>
 </html>
 
