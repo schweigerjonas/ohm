@@ -8,9 +8,6 @@ import (
 
 func homeHandler(db *sql.DB) fiber.Handler {
 	return func(c *fiber.Ctx) error {
-		return c.Render("index", fiber.Map{
-			"Title":   "Ohm",
-			"Message": "Welcome to Budget App!",
-		})
+		return c.Render("index", fiber.Map{})
 	}
 }
