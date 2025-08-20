@@ -26,7 +26,7 @@
       />
       <input type="text" name="category" placeholder="Category" required />
       <input type="number" name="value" placeholder="Value" required />
-      <button class="add-expense-button" type="submit">Send request</button>
+      <button id="add-expense-button" type="submit">Send request</button>
     </form>
     <div id="response"></div>
 
@@ -42,7 +42,7 @@
       </thead>
       <tbody
         hx-get="/api/expense"
-        hx-trigger="load"
+        hx-trigger="load, newExpense from:body"
         hx-target="this"
         hx-swap="innerHTML"
       ></tbody>

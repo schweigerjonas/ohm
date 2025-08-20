@@ -85,6 +85,9 @@ func addExpenseHandler(db *sql.DB) fiber.Handler {
 
 		fmt.Println(result.LastInsertId())
 
+		// Set reponse header to trigger table update
+		c.Context().Response.Header.Set("HX-Trigger", "newExpense")
+
 		return err
 	}
 }
