@@ -17,7 +17,7 @@
       hx-headers='{ "Content-Type": "application/json" }'
       hx-ext="form-json"
     >
-      <input type="date" name="time_occ" required />
+      <input type="date" name="timeocc" required />
       <input
         type="text"
         name="description"
@@ -26,7 +26,7 @@
       />
       <input type="text" name="category" placeholder="Category" required />
       <input type="number" name="value" placeholder="Value" required />
-      <button type="submit">Send request</button>
+      <button class="add-expense-button" type="submit">Send request</button>
     </form>
     <div id="response"></div>
 

@@ -4,7 +4,7 @@ import "time"
 
 type Expense struct {
 	ID          int
-	TimeOcc     time.Time
+	TimeOcc     string
 	Description string
 	Category    string
 	Value       float32

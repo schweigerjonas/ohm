@@ -26,7 +26,14 @@ func getAllExpensesHandler(db *sql.DB) fiber.Handler {
 
 		for rows.Next() {
 			var expense models.Expense
-			if err := rows.Scan(&expense.ID, &expense.TimeOcc, &expense.Description, &expense.Category, &expense.Value, &expense.TimeAdd); err != nil {
+			if err := rows.Scan(
+				&expense.ID,
+				&expense.TimeOcc,
+				&expense.Description,
+				&expense.Category,
+				&expense.Value,
+				&expense.TimeAdd,
+			); err != nil {
 				return fmt.Errorf("getAllExpensesHandler: %v", err)
 			}
 
@@ -55,12 +62,12 @@ func addExpenseHandler(db *sql.DB) fiber.Handler {
 				value, 
 				time_add
 			) 
-			VALUES (?, ?, ?, ?, ?, ?);"
+			VALUES (?, ?, ?, ?, ?, ?);
 		`
 		expense := new(models.Expense)
 
 		if err := c.BodyParser(&expense); err != nil {
-			return fmt.Errorf("addExpenseHandler: %v", err)
+			return fmt.Errorf("addExpenseHandler/c.BodyParser: %v", err)
 		}
 
 		result, err := db.Exec(
@@ -73,10 +80,10 @@ func addExpenseHandler(db *sql.DB) fiber.Handler {
 			time.Now(),
 		)
 		if err != nil {
-			return fmt.Errorf("addExpenseHandler: %v", err)
+			return fmt.Errorf("addExpenseHandler/db.Exec: %v", err)
 		}
 
-		fmt.Print(result.LastInsertId())
+		fmt.Println(result.LastInsertId())
 
 		return err
 	}
