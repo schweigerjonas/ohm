@@ -1,0 +1,8 @@
+<option value="">-- Select Option --</option>
+{{range $category, $subcategories := .Categories}}
+<optgroup label="{{$category}}">
+  {{range $subcategory := $subcategories}}
+  <option value="{{$subcategory}}">{{$subcategory}}</option>
+  {{end}}
+</optgroup>
+{{end}}

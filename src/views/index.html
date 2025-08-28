@@ -24,7 +24,15 @@
         placeholder="Description"
         required
       />
-      <input type="text" name="category" placeholder="Category" required />
+      <select
+        hx-get="/api/category/expense"
+        hx-trigger="load"
+        hx-target="this"
+        hx-swap="innerHTML"
+        name="category"
+        id="category-select"
+        required
+      ></select>
       <input
         type="number"
         name="value"
