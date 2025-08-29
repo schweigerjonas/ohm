@@ -1,4 +1,4 @@
-{{range .Expenses}}
+{{range .Transactions}}
 <tr>
   <td>{{.TimeOcc}}</td>
   <td>{{.Description}}</td>
@@ -7,6 +7,6 @@
 </tr>
 {{else}}
 <tr>
-  <td colspan="4">No expenses found.</td>
+  <td colspan="4">No transactions found.</td>
 </tr>
 {{end}}
