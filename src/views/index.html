@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles/styles.css" />
 
+    <script src="scripts/update-form.js"></script>
+
     <script src="vendored/htmx.min.js"></script>
     <script src="https://unpkg.com/htmx-ext-form-json"></script>
 
@@ -16,7 +18,12 @@
       hx-post="/api/expense"
       hx-headers='{ "Content-Type": "application/json" }'
       hx-ext="form-json"
+      id="transaction-form"
     >
+      <select name="type" id="type-select">
+        <option value="expense" selected>Expense</option>
+        <option value="income">Income</option>
+      </select>
       <input type="date" name="timeocc" required />
       <input
         type="text"
