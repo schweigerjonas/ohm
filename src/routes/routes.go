@@ -15,7 +15,9 @@ func Initialize(app *fiber.App, db *sql.DB) {
 	app.Post("/api/expense", addExpenseHandler(db))
 
 	// income handlers
+	app.Get("/api/income", getAllIncomeHandler(db))
+	app.Post("/api/income", addIncomeHandler(db))
 
 	// category handlers
-	app.Get("api/category/expense", getAllExpenseCategoriesHandler(db))
+	app.Get("api/categories", getAllCategoriesHandler(db))
 }

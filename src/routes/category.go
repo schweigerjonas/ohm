@@ -9,7 +9,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func getAllExpenseCategoriesHandler(db *sql.DB) fiber.Handler {
+func getAllCategoriesHandler(db *sql.DB) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		query := `
 			SELECT * FROM categories WHERE type='expense';
@@ -18,7 +18,7 @@ func getAllExpenseCategoriesHandler(db *sql.DB) fiber.Handler {
 
 		rows, err := db.Query(query)
 		if err != nil {
-			return fmt.Errorf("getAllExpenseCategoriesHandler: %v", err)
+			return fmt.Errorf("getAllCategoriesHandler: %v", err)
 		}
 
 		defer rows.Close()
@@ -31,14 +31,14 @@ func getAllExpenseCategoriesHandler(db *sql.DB) fiber.Handler {
 				&category.Category,
 				&category.Subcategory,
 			); err != nil {
-				return fmt.Errorf("getAllExpenseCategoriesHandler: %v", err)
+				return fmt.Errorf("getAllCategoriesHandler: %v", err)
 			}
 
 			categories = append(categories, category)
 		}
 
 		if err := rows.Err(); err != nil {
-			return fmt.Errorf("getAllExpenseCategoriesHandler: %v", err)
+			return fmt.Errorf("getAllCategoriesHandler: %v", err)
 		}
 
 		categoryMap := make(map[string][]string)

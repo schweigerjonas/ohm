@@ -44,8 +44,8 @@ func getAllExpensesHandler(db *sql.DB) fiber.Handler {
 			return fmt.Errorf("getAllExpensesHandler: %v", err)
 		}
 
-		return c.Render("expense", fiber.Map{
-			"Expenses": expenses,
+		return c.Render("transaction", fiber.Map{
+			"Transactions": expenses,
 		})
 	}
 }
@@ -67,7 +67,7 @@ func addExpenseHandler(db *sql.DB) fiber.Handler {
 		expense := new(models.Expense)
 
 		if err := c.BodyParser(&expense); err != nil {
-			return fmt.Errorf("addExpenseHandler/c.BodyParser: %v", err)
+			return fmt.Errorf("addExpenseHandler: %v", err)
 		}
 
 		result, err := db.Exec(
@@ -80,7 +80,7 @@ func addExpenseHandler(db *sql.DB) fiber.Handler {
 			time.Now(),
 		)
 		if err != nil {
-			return fmt.Errorf("addExpenseHandler/db.Exec: %v", err)
+			return fmt.Errorf("addExpenseHandler: %v", err)
 		}
 
 		fmt.Println(result.LastInsertId())

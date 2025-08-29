@@ -32,10 +32,11 @@
         required
       />
       <select
-        hx-get="/api/category/expense"
-        hx-trigger="load"
+        hx-get="/api/categories"
+        hx-trigger="load, change from:#type-select"
         hx-target="this"
         hx-swap="innerHTML"
+        hx-include="#type-select"
         name="category"
         id="category-select"
         required
@@ -48,11 +49,12 @@
         placeholder="Value"
         required
       />
-      <button id="add-expense-button" type="submit">Send request</button>
+      <button id="transaction-button" type="submit">Send request</button>
     </form>
     <div id="response"></div>
 
     <hr />
+    <h2>Expenses</h2>
     <table>
       <thead>
         <tr>
@@ -65,6 +67,25 @@
       <tbody
         hx-get="/api/expense"
         hx-trigger="load, newExpense from:body"
+        hx-target="this"
+        hx-swap="innerHTML"
+      ></tbody>
+    </table>
+
+    <hr />
+    <h2>Income</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Time_Occ</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody
+        hx-get="/api/income"
+        hx-trigger="load, newIncome from:body"
         hx-target="this"
         hx-swap="innerHTML"
       ></tbody>
