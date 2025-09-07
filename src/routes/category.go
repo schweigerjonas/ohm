@@ -11,12 +11,15 @@ import (
 
 func getAllCategoriesHandler(db *sql.DB) fiber.Handler {
 	return func(c *fiber.Ctx) error {
+		queryParams := c.Queries()
+		categoryType := queryParams["type"]
+
 		query := `
-			SELECT * FROM categories WHERE type='expense';
+			SELECT * FROM categories WHERE type=?;
 		`
 		var categories []models.Category
 
-		rows, err := db.Query(query)
+		rows, err := db.Query(query, categoryType)
 		if err != nil {
 			return fmt.Errorf("getAllCategoriesHandler: %v", err)
 		}
@@ -47,10 +50,16 @@ func getAllCategoriesHandler(db *sql.DB) fiber.Handler {
 			category := categoryValue.Category
 			subcategory := categoryValue.Subcategory
 
-			categoryMap[category] = append(categoryMap[category], subcategory)
+			categoryMap[category.String] = append(categoryMap[category.String], subcategory)
 		}
 
-		return c.Render("select-options", fiber.Map{
+		if categoryType == "income" {
+			return c.Render("income-options", fiber.Map{
+				"Categories": categoryMap,
+			})
+		}
+
+		return c.Render("expense-options", fiber.Map{
 			"Categories": categoryMap,
 		})
 	}

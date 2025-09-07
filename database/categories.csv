@@ -1,6 +1,7 @@
 type,category,subcategory
 income,,Salary
 income,,Side Hustle
+income,,Alimony
 expense,Transportation,Fuel
 expense,Transportation,Public Transit
 expense,Food,Groceries
